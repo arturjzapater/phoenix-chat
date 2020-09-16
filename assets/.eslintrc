@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "pixie",
+    "plugin:react/recommended"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "react/prop-types": "off"
+  }
+}
