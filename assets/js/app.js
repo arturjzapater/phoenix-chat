@@ -18,7 +18,7 @@ import { Socket } from 'phoenix'
 const socket = new Socket('/socket', { params: { user: `johnny_${Math.floor(Math.random() * 150)}` } })
 socket.connect()
 
-const channel = socket.channel('room:12')
+const channel = socket.channel('room:lobby')
 channel.join()
     .receive('ok', res => console.log('Joined successfully!', res))
     .receive('error', res => console.log('Oopsies!', res))

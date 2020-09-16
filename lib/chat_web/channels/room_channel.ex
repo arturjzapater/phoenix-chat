@@ -1,7 +1,7 @@
 defmodule ChatWeb.RoomChannel do
   use ChatWeb, :channel
 
-  def join("room:" <> _room, _payload, socket) do
+  def join("room:lobby", _payload, socket) do
     send(self(), :after_join)
     {:ok, socket}
   end
