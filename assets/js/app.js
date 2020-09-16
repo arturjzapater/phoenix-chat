@@ -1,7 +1,7 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
-import "../css/app.scss"
+import "../css/app.css"
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -20,8 +20,8 @@ socket.connect()
 
 const channel = socket.channel('room:lobby')
 channel.join()
-    .receive('ok', res => console.log('Joined successfully!', res))
-    .receive('error', res => console.log('Oopsies!', res))
+  .receive('ok', res => console.log('Joined successfully!', res))
+  .receive('error', res => console.log('Oopsies!', res))
 
 channel.on('new_message', res => console.log(res))
 channel.on('user_joined', res => console.log(res.message, res.user))

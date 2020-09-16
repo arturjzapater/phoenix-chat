@@ -17,7 +17,7 @@ module.exports = (env, options) => {
       ],
     },
     entry: {
-      'app': glob.sync('./vendor/**/*.js').concat([ './js/app.js' ]),
+      'app': glob.sync('./vendor/**/*.js').concat([ './js/index.jsx' ]),
     },
     output: {
       filename: '[name].js',
@@ -39,15 +39,15 @@ module.exports = (env, options) => {
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
-            'sass-loader',
             {
               loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
-                plugins: [
-                  require('tailwindcss'),
-                  require('autoprefixer'),
-                ],
+                postcssOptions: {
+                  plugins: [
+                    'autoprefixer',
+                    'tailwindcss',
+                  ],
+                },
               },
             },
           ],
