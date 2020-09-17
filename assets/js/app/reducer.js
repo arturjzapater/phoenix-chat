@@ -8,9 +8,9 @@ const actions = {
     ...state,
     user,
   }),
-  RECEIVE_MESSAGE: (state, { message }) => ({
+  RECEIVE_MESSAGE: (state, { message, user }) => ({
     ...state,
-    messages: state.messages.concat(message),
+    messages: state.messages.concat({ message, user }),
   }),
   default: state => ({
     ...state,
