@@ -1,7 +1,7 @@
 import React, { createContext } from 'react'
 import { Socket } from 'phoenix'
 import { useDispatch, useSelector } from 'react-redux'
-import { receiveMessage } from './SocketActions'
+import { receiveMessage, systemMessage } from './SocketActions'
 
 const SocketContext = createContext(null)
 
@@ -23,7 +23,7 @@ const SocketProvider = ({ children }) => {
       .receive('error', res => console.log('Oopsies!', res))
 
     channel.on('new_message', ({ message, user }) => dispatch(receiveMessage(message, user)))
-    channel.on('user_joined', res => console.log(res.message, res.user))
+    channel.on('user_joined', ({ user }) => dispatch(systemMessage(`${user} joined the conversation`)))
 
     const sendMessage = message => channel.push('new_message', { message })
 
