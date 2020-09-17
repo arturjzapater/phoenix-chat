@@ -8,13 +8,11 @@ const App = () => {
   const user = useSelector(state => state.user)
 
   return (
-    <div className="bg-purple-900 text-gray-100">
-      <If 
-        cond={!user}
-        then={<Login />}
-        else={<ChatRoom />}
-      />
-    </div>
+    <If 
+      cond={!user}
+      then={<Login />}
+      else={<ChatRoom />}
+    />
   )
 }
 

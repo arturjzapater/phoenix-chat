@@ -9,8 +9,10 @@ const ChatRoom = () => {
   const socket = useContext(SocketContext)
 
   return (
-    <section>
-      {messages.map((x, i) => <Message {...x} key={`${x.user}-${i}`} />)}
+    <section className="h-screen">
+      <div className="h-v-90 overflow-y-auto">
+        {messages.map((x, i) => <Message {...x} key={`${x.user}-${i}`} />)}
+      </div>
       <InputForm onSubmit={socket.sendMessage} submit="Send" />
     </section>
   )
