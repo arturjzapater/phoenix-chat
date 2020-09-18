@@ -18,9 +18,6 @@ config :chat, ChatWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
-config :chat, Chat.Repo,
-  ssl: true
-
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
