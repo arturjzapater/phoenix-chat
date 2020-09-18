@@ -1,22 +1,40 @@
 import React, { useState } from 'react'
 
-const InputForm = ({ onSubmit, submit, className = '' }) => {
+const InputForm = ({ onSubmit, submit, className = '', validate = false }) => {
   const [ input, setInput ] = useState('')
+  const [ error, setError ] = useState(false)
 
   const handleChange = event => {
     setInput(event.target.value)
+    setError(false)
   }
 
   const handleSubmit = event => {
     event.preventDefault()
-    onSubmit(input)
-    setInput('')
+    if (validate) {
+      setError(input === '')
+    }
+    if (!error) {
+      onSubmit(input)
+      setInput('')
+    }
   }
 
   return (
     <form className={`flex ${className}`}>
-      <input type="text" value={input} onChange={handleChange} className="flex-grow" />
-      <button onClick={handleSubmit}>{submit}</button>
+      <input
+        type="text"
+        value={input}
+        onChange={handleChange}
+        className="flex-grow bg-gray-800 py-1 px-4 mt-2 border border-gray-800 focus:border-gray-500"
+      />
+      {error && <span className="text-red-500 text-xs italic">Please, fill this field.</span>}
+      <button
+        className="bg-gray-800 py-1 px-4 my-4 transition duration-300 ease-in hover:bg-gray-500 hover:text-gray-900 font-semibold"
+        onClick={handleSubmit}
+      >
+        {submit}
+      </button>
     </form>
   )
 }
