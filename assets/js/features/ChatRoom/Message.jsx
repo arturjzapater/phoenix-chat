@@ -1,14 +1,15 @@
 import React from 'react'
 import If from '../If/If'
+import UserDescription from './UserDescription'
 
 const Message = ({ message, type, user }) => (
-  <p>
+  <div className="font-sans my-2 flex flex-col">
     <If
       cond={type === 'user-message'}
-      then={<span className="font-semibold">{user}:&nbsp;</span>}
+      then={<UserDescription user={user} />}
     />
-    <span className={type === 'system' ? 'italic' : ''}>{message}</span>
-  </p>
+    <p className={`leading-relaxed ${type === 'system' ? 'italic text-sm' : 'pl-4'}`}>{message}</p>
+  </div>
 )
 
 export default Message
