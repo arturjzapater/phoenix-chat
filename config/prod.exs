@@ -10,10 +10,9 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :chat, ChatWeb.Endpoint,
-  # http: [:inet6, port: {:system, "PORT"}],
-  load_from_system_env: true,
+  http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "firebird-chat.herokuapp.com/", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  # force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
