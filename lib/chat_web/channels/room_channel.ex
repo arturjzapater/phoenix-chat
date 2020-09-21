@@ -1,9 +1,10 @@
 defmodule ChatWeb.RoomChannel do
   use ChatWeb, :channel
 
-  def join("room:lobby", _payload, socket) do
+  def join("room:lobby", %{"params" => %{"user" => user}} = payload, socket) do
+    IO.puts inspect(payload)
     send(self(), :after_join)
-    {:ok, socket}
+    {:ok, assign(socket, user: user)}
   end
 
   def handle_in("new_user", _payload, socket) do

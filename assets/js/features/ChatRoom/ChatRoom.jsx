@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import InputForm from '../InputForm/InputForm'
 import Message from './Message'
-import { SocketContext } from '../Socket/Socket'
+import useChannel from '../Socket/useChannel'
 
 const ChatRoom = () => {
   const messages = useSelector(state => state.messages)
   const msgEndRef = useRef(null)
-  const socket = useContext(SocketContext)
+  const channel = useChannel('room:lobby')
 
   useEffect(() => {
     msgEndRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -19,7 +19,7 @@ const ChatRoom = () => {
         {messages.map((x, i) => <Message {...x} key={`${x.user}-${i}`} />)}
         <div ref={msgEndRef} />
       </div>
-      <InputForm onSubmit={socket.sendMessage} submit="Send" />
+      <InputForm onSubmit={channel.sendMessage} submit="Send" />
     </section>
   )
 }
