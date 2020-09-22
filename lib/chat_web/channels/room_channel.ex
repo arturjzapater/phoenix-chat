@@ -1,5 +1,6 @@
 defmodule ChatWeb.RoomChannel do
   use ChatWeb, :channel
+  alias ChatWeb.Presence
 
   def join("room:lobby", %{"params" => %{"user" => user}}, socket) do
     send(self(), :after_join)
@@ -17,6 +18,9 @@ defmodule ChatWeb.RoomChannel do
   end
 
   def handle_info(:after_join, socket) do
+    {:ok, _} = Presence.track(socket, socket.assigns.user, %{
+      online_at: inspect(System.system_time(:millisecond))
+    })
     broadcast!(socket, "user_joined", %{message: "New user joined", user: socket.assigns.user})
     {:noreply, socket}
   end
