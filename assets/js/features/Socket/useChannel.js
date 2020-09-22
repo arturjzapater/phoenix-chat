@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SocketContext } from './Socket'
-import { receiveMessage, systemMessage } from './SocketActions'
+import { receiveMessage, systemMessage, updateUserList } from './SocketActions'
 
 const useChannel = channelName => {
   const [ channel, setChannel ] = useState()
@@ -22,10 +22,12 @@ const useChannel = channelName => {
     phoenixChannel.on('new_message', ({ message, user }) => dispatch(receiveMessage(message, user)))
     phoenixChannel.on('user_joined', ({ user, user_list }) => {
       console.log(user_list)
+      dispatch(updateUserList(user_list))
       dispatch(systemMessage(`${user} joined the conversation`))
     })
     phoenixChannel.on('user_left', ({ user, user_list }) => {
       console.log(user_list)
+      dispatch(updateUserList(user_list))
       dispatch(systemMessage(`${user} left the conversation`))
     })
 

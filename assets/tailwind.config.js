@@ -11,5 +11,10 @@ module.exports = {
     height: {
       'v-80': '80vh',
     },
+    extend: {
+      minWidth: {
+        '1/6': '16%',
+      },
+    },
   },
 }

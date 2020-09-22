@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import ChatRoom from '../features/ChatRoom/ChatRoom'
 import Header from './Header'
 import If from '../features/If/If'
 import Login from '../features/Login/Login'
+import Main from './Main'
 
 const App = () => {
   const user = useSelector(state => state.user)
@@ -14,7 +14,7 @@ const App = () => {
       <If 
         cond={!user}
         then={<Login />}
-        else={<ChatRoom />}
+        else={<Main />}
       />
     </>
   )

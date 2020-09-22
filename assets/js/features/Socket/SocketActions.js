@@ -16,4 +16,11 @@ const systemMessage = message => ({
   },
 })
 
-export { receiveMessage, systemMessage }
+const updateUserList = list => ({
+  type: 'UPDATE_USER_LIST',
+  payload: {
+    list,
+  },
+})
+
+export { receiveMessage, systemMessage, updateUserList }

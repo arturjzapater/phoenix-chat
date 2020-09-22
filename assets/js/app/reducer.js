@@ -1,6 +1,7 @@
 const initState = {
   user: '',
   messages: [],
+  userList: [],
 }
 
 const actions = {
@@ -11,6 +12,10 @@ const actions = {
   RECEIVE_MESSAGE: (state, { message, type, user }) => ({
     ...state,
     messages: state.messages.concat({ message, type, user }),
+  }),
+  UPDATE_USER_LIST: (state, { list }) => ({
+    ...state,
+    userList: list,
   }),
   default: state => ({
     ...state,

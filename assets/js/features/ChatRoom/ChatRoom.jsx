@@ -16,7 +16,7 @@ const ChatRoom = () => {
   useEffect(() => scrollToElementRef(msgEndRef), [ messages ])
 
   return (
-    <section className="mx-2 my-6 flex-grow flex flex-col justify-between">
+    <section className="mx-2 my-4 flex-grow flex flex-col justify-between">
       <div className="overflow-y-auto mx-6 h-v-80">
         {messages.map((x, i) => <Message {...x} key={`${x.user}-${i}`} />)}
         <div ref={msgEndRef} />
