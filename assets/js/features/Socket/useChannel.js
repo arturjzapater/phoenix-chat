@@ -20,8 +20,14 @@ const useChannel = channelName => {
       .receive('error', res => console.log('Oopsies!', res))
 
     phoenixChannel.on('new_message', ({ message, user }) => dispatch(receiveMessage(message, user)))
-    phoenixChannel.on('user_joined', ({ user }) => dispatch(systemMessage(`${user} joined the conversation`)))
-    phoenixChannel.on('user_left', ({ user }) => dispatch(systemMessage(`${user} left the conversation`)))
+    phoenixChannel.on('user_joined', ({ user, user_list }) => {
+      console.log(user_list)
+      dispatch(systemMessage(`${user} joined the conversation`))
+    })
+    phoenixChannel.on('user_left', ({ user, user_list }) => {
+      console.log(user_list)
+      dispatch(systemMessage(`${user} left the conversation`))
+    })
 
     return () => phoenixChannel.leave()
   }, [])

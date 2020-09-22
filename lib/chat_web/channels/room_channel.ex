@@ -21,11 +21,26 @@ defmodule ChatWeb.RoomChannel do
     {:ok, _} = Presence.track(socket, socket.assigns.user, %{
       online_at: inspect(System.system_time(:millisecond))
     })
-    broadcast!(socket, "user_joined", %{message: "New user joined", user: socket.assigns.user})
+    broadcast!(socket, "user_joined", %{
+      message: "New user joined",
+      user: socket.assigns.user,
+      user_list: Presence.list(socket) |> Map.keys()
+    })
     {:noreply, socket}
   end
 
   def terminate(_reason, socket) do
-    broadcast!(socket, "user_left", %{message: "User left", user: socket.assigns.user})
+    broadcast!(socket, "user_left", %{
+      message: "User left",
+      user: socket.assigns.user,
+      user_list: remove_from_list(socket)
+    })
+  end
+
+  defp remove_from_list(socket) do
+    socket
+    |> Presence.list()
+    |> Map.delete(socket.assigns.user)
+    |> Map.keys()
   end
 end
