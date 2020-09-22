@@ -4,14 +4,16 @@ import InputForm from '../InputForm/InputForm'
 import Message from './Message'
 import useChannel from '../Socket/useChannel'
 
+const scrollToElementRef = ({ current }) => {
+  current.scrollIntoView({ behavior: 'smooth' })
+}
+
 const ChatRoom = () => {
   const messages = useSelector(state => state.messages)
   const msgEndRef = useRef(null)
   const channel = useChannel('room:lobby')
 
-  useEffect(() => {
-    msgEndRef.current.scrollIntoView({ behavior: 'smooth' })
-  }, [ messages ])
+  useEffect(() => scrollToElementRef(msgEndRef), [ messages ])
 
   return (
     <section className="mx-2 my-6 flex-grow flex flex-col justify-between">
