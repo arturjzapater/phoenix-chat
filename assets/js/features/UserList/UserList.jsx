@@ -6,8 +6,8 @@ const UserList = () => {
   const list = useSelector(state => state.userList)
 
   return (
-    <section className="ml-8 my-8 min-w-1/6">
-      <h2 className="font-semibold mb-4">
+    <section className="ml-8 my-8 md:w-1/6 md:overflow-y-auto md:h-v-80">
+      <h2 className="font-semibold mb-2">
         Participants
       </h2>
       <ul className="flex flex-wrap md:flex-col md:flex-no-wrap list-none">
