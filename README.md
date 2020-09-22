@@ -1,19 +1,28 @@
-# Chat
+# Phoenix Chat
 
-To start your Phoenix server:
+A web chat application. The back end is written in Elixir/Phoenix and the front end in Redux and React.
 
-  * Install dependencies with `mix deps.get`
-  * Install Node.js dependencies with `npm install` inside the `assets` directory
-  * Start Phoenix endpoint with `mix phx.server`
+## Prerequisites
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+- Elixir >= 1.10.4
+- Erlang >= 23.0.3
+- Node >= 13.0
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Set Up
 
-## Learn more
+Clone the project and install its dependencies
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```bash
+git clone git@github.com:arturjzapater/phoenix-chat.git
+cd phoenix-chat
+mix deps.get
+cd assets && npm i
+```
+
+Start the application
+
+```bash
+mix phx.server
+```
+
+The app will be served on [localhost:4000](http://localhost:4000)
