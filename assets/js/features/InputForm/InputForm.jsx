@@ -27,7 +27,7 @@ const InputForm = ({ onSubmit, submit, className = '', validate = false }) => {
           type="text"
           value={input}
           onChange={handleChange}
-          className="flex-grow bg-gray-800 py-1 px-4 border border-gray-800 focus:border-gray-500"
+          className="flex-grow bg-gray-800 py-1 px-2 border border-gray-800 focus:border-gray-500"
         />
         {error && <span className="text-red-500 text-xs italic">Please, fill this field.</span>}
       </div>
