@@ -21,7 +21,12 @@ const ChatRoom = () => {
         {messages.map((x, i) => <Message {...x} key={`${x.user}-${i}`} />)}
         <div ref={msgEndRef} />
       </div>
-      <InputForm onSubmit={channel.sendMessage} submit="Send" />
+      <InputForm
+        onBlur={() => channel.setTyping(false)}
+        onFocus={() => channel.setTyping(true)}
+        onSubmit={channel.sendMessage}
+        submit="Send"
+      />
     </section>
   )
 }

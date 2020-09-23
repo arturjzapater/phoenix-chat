@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const InputForm = ({ onSubmit, submit, className = '', validate = false }) => {
+const InputForm = ({ onBlur, onFocus, onSubmit, submit, className = '', validate = false }) => {
   const [ input, setInput ] = useState('')
   const [ error, setError ] = useState(false)
 
@@ -26,7 +26,9 @@ const InputForm = ({ onSubmit, submit, className = '', validate = false }) => {
         <input
           type="text"
           value={input}
+          onBlur={onBlur}
           onChange={handleChange}
+          onFocus={onFocus}
           className="flex-grow bg-gray-800 py-1 px-2 border border-gray-800 focus:border-gray-500"
         />
         {error && <span className="text-red-500 text-xs italic">Please, fill this field.</span>}

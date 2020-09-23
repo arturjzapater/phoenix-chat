@@ -1,7 +1,9 @@
+import { Presence } from 'phoenix'
+
 const initState = {
   user: '',
   messages: [],
-  userList: [],
+  presences: {},
 }
 
 const actions = {
@@ -9,13 +11,17 @@ const actions = {
     ...state,
     user,
   }),
+  PRESENCE_DIFF: (state, { newPresences }) => ({
+    ...state,
+    presences: Presence.syncDiff(state.presences, newPresences),
+  }),
+  PRESENCE_STATE: (state, { newPresences }) => ({
+    ...state,
+    presences: Presence.syncState(state.presences, newPresences),
+  }),
   RECEIVE_MESSAGE: (state, { message, type, user }) => ({
     ...state,
     messages: state.messages.concat({ message, type, user }),
-  }),
-  UPDATE_USER_LIST: (state, { list }) => ({
-    ...state,
-    userList: list,
   }),
   default: state => ({
     ...state,

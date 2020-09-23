@@ -1,9 +1,17 @@
+import { Presence } from 'phoenix'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import UserItem from './UserItem'
 
+const makeUserItems = presences =>
+  Presence.list(
+    presences,
+    (user, { metas: [{ typing, phx_ref }] }) =>
+      <UserItem name={user} typing={typing} key={phx_ref} />
+  )
+
 const UserList = () => {
-  const list = useSelector(state => state.userList)
+  const presences = useSelector(state => state.presences)
 
   return (
     <section className="ml-8 my-8 md:w-1/6 md:overflow-y-auto md:h-v-80">
@@ -11,7 +19,7 @@ const UserList = () => {
         Participants
       </h2>
       <ul className="flex flex-wrap md:flex-col md:flex-no-wrap list-none">
-        {list.map(x => <UserItem name={x} key={name + Math.random().toFixed(5)} />)}
+        {makeUserItems(presences)}
       </ul>
     </section>
   )

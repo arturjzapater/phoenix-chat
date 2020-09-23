@@ -16,11 +16,18 @@ const systemMessage = message => ({
   },
 })
 
-const updateUserList = list => ({
-  type: 'UPDATE_USER_LIST',
+const presenceState = newPresences => ({
+  type: 'PRESENCE_STATE',
   payload: {
-    list,
+    newPresences,
   },
 })
 
-export { receiveMessage, systemMessage, updateUserList }
+const presenceDiff = newPresences => ({
+  type: 'PRESENCE_DIFF',
+  payload: {
+    newPresences,
+  },
+})
+
+export { presenceDiff, presenceState, receiveMessage, systemMessage }
