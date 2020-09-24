@@ -9,6 +9,7 @@ import InfoMessage from './InfoMessage'
 const prop = key => obj => obj[key]
 
 const messages = {
+  '0': () => '',
   '1': ([ user ]) => `${user} is typing...`,
   '2': ([ first, second ]) => `${first} and ${second} are typing...`,
   '3': ([ first, second, third ]) => `${first}, ${second} and ${third} are typing...`,
@@ -23,9 +24,7 @@ const getTyping = (presences, currentUser) => {
 
   const makeMessage = messages[typing.length] || messages.default
 
-  return typing.length > 0
-    ? <InfoMessage message={makeMessage(typing)} />
-    : null
+  return makeMessage(typing)
 }
 
 const scrollToElementRef = ({ current }) => {
@@ -43,11 +42,11 @@ const ChatRoom = () => {
 
   return (
     <section className="mx-2 my-4 flex-grow flex flex-col justify-between">
-      <div className="overflow-y-auto mx-6 h-v-80">
+      <div className="overflow-y-auto mx-4 h-v-75">
         {messages.map((x, i) => <Message {...x} key={`${x.user}-${i}`} />)}
         <div ref={msgEndRef} />
       </div>
-      {getTyping(presences, user)}
+      <InfoMessage message={getTyping(presences, user)} />
       <InputForm
         onBlur={() => channel.setTyping(false)}
         onFocus={() => channel.setTyping(true)}

@@ -8,8 +8,10 @@ module.exports = {
     './css/**/*.css',
   ],
   theme: {
-    height: {
-      'v-80': '80vh',
+    extend: {
+      height: {
+        'v-75': '75vh',
+      },
     },
   },
 }
